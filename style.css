@@ -70,5 +70,6 @@ article {
 .post-date {
   font-size: 0.85em;
   color: #b8b8b8;
+  display: block; 
   margin-bottom: 6px;
 }
