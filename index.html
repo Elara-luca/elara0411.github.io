@@ -16,15 +16,28 @@
           path: "posts/post1.html",
           preview: "这周重新翻了《剑指Offer》，感觉比第一次看顺多了...",
           tag: "学习笔记"
+          date: "2025-10-14"
         },
         {
           title: "blog模板",
           path: "post/template.html",
           preview: "正文内容//存一个写博客的小模板...",
           tag: "模板"
+          date: "2025-10-14"
         }
       ];
+    
+        const container = document.getElementById("posts-container");
+    container.innerHTML = posts.map(post => `
+      <div class="post-card">
+        <h2>${post.title}</h2>
+        <div class="post-date">${post.date}</div>
+        <p>${post.preview}</p>
+        <span class="tag">#${post.tag}</span>
+      </div>
+    `).join('');
 
+    
       // 生成 HTML
       posts.forEach(p => {
         const article = document.createElement("article");
