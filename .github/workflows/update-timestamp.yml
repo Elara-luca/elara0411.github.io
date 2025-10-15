@@ -1,0 +1,27 @@
+name: Update Blog Timestamp
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'post*/**'   # 当你更新博客文件夹时触发
+
+jobs:
+  update-timestamp:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Update index.html timestamp
+        run: |
+          now=$(date +"%Y-%m-%d %H:%M:%S")
+          sed -i "s|📅 最后更新：.*|📅 最后更新：$now|g" index.html
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add index.html
+          git commit -m "auto: update timestamp $now" || echo "No changes to commit"
+          git push
