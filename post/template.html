@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>文章标题</title>
+  <link rel="stylesheet" href="../style.css">
+  <script>
+    window.onload = function() {
+      const dateElem = document.getElementById("timestamp");
+      const modified = new Date(document.lastModified);
+      const formatted = modified.toLocaleString("zh-CN", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit"
+      });
+      dateElem.textContent = "📅 最后更新：" + formatted;
+    };
+  </script>
+</head>
+<body>
+  <header>
+    <h1><a href="../index.html">← 返回首页</a></h1>
+  </header>
+
+  <main>
+    <article>
+      <h2>文章标题</h2>
+      <p id="timestamp" class="date"></p>
+      <p>正文内容//存一个写博客的小模板</p>
+    </article>
+  </main>
+
+  <footer>
+    © 2025 Elara
+  </footer>
+</body>
+</html>
