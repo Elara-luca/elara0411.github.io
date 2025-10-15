@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>Elara的小窝</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      const postList = document.getElementById("post-list");
+
+      // 不能直接读取目录，手动维护一个数组：
+      // 这里添加 { title, path, preview }
+      const posts = [
+        {
+          title: "最近在学：算法与数据结构",
+          path: "posts/post1.html",
+          preview: "这周重新翻了《剑指Offer》，感觉比第一次看顺多了...",
+          tag: "学习笔记"
+        },
+        {
+          title: "blog模板",
+          path: "post/template.html",
+          preview: "正文内容//存一个写博客的小模板...",
+          tag: "模板"
+        }
+      ];
+
+      // 生成 HTML
+      posts.forEach(p => {
+        const article = document.createElement("article");
+        article.innerHTML = `
+          <h2><a href="${p.path}">${p.title}</a></h2>
+          <p class="preview">${p.preview}</p>
+          <span class="tag">#${p.tag}</span>
+        `;
+        postList.appendChild(article);
+      });
+
+      // 显示最后更新时间
+      const modified = new Date(document.lastModified);
+      const formatted = modified.toLocaleString("zh-CN", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit"
+      });
+      document.getElementById("page-updated").textContent =
+        "📅 页面最后更新：" + formatted;
+    });
+  </script>
+</head>
+
+<body>
+  <header>
+    <h1>Elara的小窝</h1>
+    <p>学习 · 项目 · 猫爪印记</p>
+    <p id="page-updated" class="date"></p>
+  </header>
+
+  <main id="post-list"></main>
+
+  <footer>
+    © 2025 Elara | 🐈‍⬛
+  </footer>
+</body>
+</html>
